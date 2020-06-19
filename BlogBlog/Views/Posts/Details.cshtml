@@ -1,74 +1,158 @@
-﻿@model BlogBlog.Models.Post
+﻿@model BlogBlog.Models.postViewmodel
 
 @{
     ViewBag.Title = "Details";
 }
+<style>
+    .prettyprint {
+        direction: ltr;
+        text-align: left;
+        width: 100%
+    }
+    #toast-container{
+        width:500px;
+    }
+    .toast-success {
+        width: 100%;
+    }
+</style>
+<section class="blog_area single-post-area p_120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list" style="text-align: right;">
+                <div class="single-post row">
+                    <div class="col-lg-12">
+                        <div class="feature-img">
+                            <img class="img-fluid" src="../../@Html.DisplayFor(model => model.Img)" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3  col-md-3">
+                        <div class="blog_info text-right">
+                            <div class="post_tag" style="text-align: end;">
 
-<h2>Details</h2>
+                                <a class="active" href="#">@Html.DisplayFor(model => model.Category)</a>
+                                <input type="hidden" value="@Html.DisplayFor(model => model.id)" id="postid" />
+                            </div>
+                            <ul class="blog_meta list" style="text-align: end;">
+                                <li><a href="#" style="font-family: Vazir;">@Html.DisplayFor(model => model.WriterName)<i class="lnr lnr-user"></i></a></li>
+                                <li><a href="#" style="font-family: Vazir;">@Html.DisplayFor(model => model.DatedPost)<i class="lnr lnr-calendar-full"></i></a></li>
+                                <li><a href="#" style="font-family: Vazir;">- بازدید<i class="lnr lnr-eye"></i></a></li>
+                                <li><a href="#" style="font-family: Vazir;">@Html.DisplayFor(model => model.commentsNumber)<i class="lnr lnr-bubble"></i></a></li>
+                            </ul>
+                            <ul class="social-links" style="text-align: end;">
+                                <li><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="../../js/widgets.js" charset="utf-8"></script></li>
 
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.WriterName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WriterName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DatedPost)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DatedPost)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Img)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Img)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 blog_details" style="direction:rtl">
+                        @Html.Raw(Model.Text)
+                    </div>
+                    <div class="col-lg-12" style="direction: rtl;">
+                        <div class="quotes">
+                            @Html.Raw(Model.quote)
+                        </div>
+                        <div class="row" style="text-align:right;direction:rtl;">
+                            @Html.Raw(Model.text2)
+                        </div>
+                    </div>
+                </div>
+                @*<div class="navigation-area">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                    <div class="thumb">
+                        <a href="@Html.DisplayFor(model => model.post[0].Id)"><img class="img-fluid" src="../../img/blog/prev.jpg" alt=""></a>
+                    </div>
+                    <div class="arrow">
+                        <a href="@Html.DisplayFor(model => model.post[0].Id)"><span class="lnr text-white lnr-arrow-left"></span></a>
+                    </div>
+                    <div class="detials">
+                        <p>Prev Post</p>
+                        <a href="@Html.DisplayFor(model => model.post[0].Id)"><h4>@Html.DisplayFor(model => model.post[0].Title) </h4></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                    <div class="detials">
+                        <p>Next Post</p>
+                        <a href="@Html.DisplayFor(model => model.post[1].Id)"><h4>@Html.DisplayFor(model => model.post[1].Title) </h4></a>
+                    </div>
+                    <div class="arrow">
+                        <a href="@Html.DisplayFor(model => model.post[1].Id)"><span class="lnr text-white lnr-arrow-right"></span></a>
+                    </div>
+                    <div class="thumb">
+                        <a href="@Html.DisplayFor(model => model.post[1].Id)"><img class="img-fluid" src="../../img/blog/next.jpg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                
+                <div class="comments-area" style="direction: rtl;">
+                    <h4>@Html.DisplayFor(model => model.commentsNumber) نظر</h4>
+                    @foreach (var item in Model.Comments)
+                    {
+                        <div class="comment-list">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb" style="    margin-left: 20px;    margin-right: 0px;">
+                                        <img src="../../img/blog/icons8-avatar-480.png"width="40px;">
+                                    </div>
+                                    <div class="desc">
+                                        <h5> @Html.DisplayFor(modelItem => item.WriterName) </h5>
+                                        <p class="date"> @Html.DisplayFor(modelItem => item.Date)  </p>
+                                        <p class="comment">
+                                            @Html.DisplayFor(modelItem => item.Message)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="comment-form" style="direction:rtl;">
+                    <h4>نظر خود را درباره این پست بنویسید .</h4>
+                    <form>
+                        <div class="form-group form-inline">
+                            <div class="form-group col-lg-6 col-md-6 name">
+                                <input type="text" class="form-control" id="name" placeholder="نام" onfocus="this.placeholder = ''" onblur="this.placeholder = 'نام'">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 email">
+                                <input type="email" class="form-control" id="email" placeholder="ایمیل" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ایمیل'">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control mb-10" id="writerText" rows="5" name="message" placeholder="متن" onfocus="this.placeholder = ''" onblur="this.placeholder = 'متن'" required=""></textarea>
+                        </div>
+                        <a onclick="ShowCurrentTime()" style="color:black;" class="primary-btn submit_btn">ثبت نظر</a>
+                    </form>
+                </div>
+            </div>
+            @Html.Action("SideBar")
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    function ShowCurrentTime() {
+        //alert(window.location.pathname);
+        var writerName = $('#name').val();
+        var writerEmail = $('#email').val();
+        var writerText = $('#writerText').val();
+        var writerPosiId = $('#postid').val();
+        var jsonData = {CommentsId: 0 ,
+                        WriterName:   writerName  , 
+                        Email:  writerEmail  ,
+                        subject: '-',
+                        Date: '-',
+                        Message :  writerText ,
+                        PostId: parseInt( writerPosiId) } ;
+        console.log(jsonData);
+        $.ajax({
+            type: "POST",
+            url: "/Posts/comment",
+            data: jsonData,
+            success: function (data) {
+                toastr.success('نظر شما پس از تایید نمایش داده میشود :)', 'SEPPPPII')
+            }
+        });
+    }
+  
+</script>

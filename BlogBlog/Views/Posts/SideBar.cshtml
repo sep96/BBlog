@@ -1,0 +1,57 @@
+﻿@model BlogBlog.Models.SideBar
+<div class="col-lg-4">
+    <div class="blog_right_sidebar" style="direction: rtl;">
+        <aside class="single_sidebar_widget author_widget" style="font-family: Vazir;">
+            <img class="author_img rounded-circle" src="../../img/profile.jpg" alt="" style="border-radius: 30% !important;width: 30%;">
+            <h4>سپهر</h4>
+            <p>Senior blog writer</p>
+            <div class="social_icon">
+                <a href="https://twitter.com/sep_96_"  target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://github.com/sep96"  target="_blank"><i class="fa fa-github"></i></a>
+            </div>
+            <p>Dont follow your dreams, follow my twitter:)</p>
+            <div class="br"></div>
+        </aside>
+        <aside class="single_sidebar_widget popular_post_widget">
+            <h3 class="widget_title">پست های پر بازدید</h3>
+        @foreach (var item in Model.post)
+        {
+            <div class="media post_item">
+                <img src="@Url.Content(item.Img)" alt="post" style="width: 100px;">
+                <div class="media-body">
+                    <a href="/Posts/Details/@Html.DisplayFor(modelItem => item.Id)">
+                        <h3> @Html.DisplayFor(modelItem => item.Title) </h3></a>
+                    <p>@Html.DisplayFor(modelItem => item.DatedPost)</p>
+                </div>
+            </div>
+        }
+          
+            <div class="br"></div>
+        </aside>
+        
+        <aside class="single_sidebar_widget post_category_widget">
+            <h4 class="widget_title">کتگوری </h4>
+            <ul class="list cat-list">
+            @foreach (var item in Model.category)
+            {
+                <li>
+                    <a href="#" class="d-flex justify-content-between">
+                        <p>@Html.DisplayFor(modelItem => item.Name)</p>
+                        <p>@Html.DisplayFor(modelItem => item.Posts.Count)</p>
+                    </a>
+                </li>
+            }
+            </ul>
+            <div class="br"></div>
+        </aside>
+        <aside class="single-sidebar-widget tag_cloud_widget">
+            <h4 class="widget_title">تگ هامون</h4>
+            <ul class="list">
+                <li><a href="#">تکنولوژِی</a></li>
+                <li><a href="#">GIS</a></li>
+                <li><a href="#">معماری</a></li>
+                <li><a href="#">غذا</a></li>
+            </ul>
+        </aside>
+    </div>
+</div>

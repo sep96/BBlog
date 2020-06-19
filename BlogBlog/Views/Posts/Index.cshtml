@@ -1,4 +1,7 @@
-﻿@model IEnumerable<BlogBlog.Models.postViewmodel>
+﻿@using BlogBlog.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<BlogBlog.Models.postViewmodel>
 
     <!--================Home Banner Area =================-->
     <section class="home_banner_area blog_banner">
@@ -6,9 +9,8 @@
             <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
             <div class="container">
                 <div class="blog_b_text text-center">
-                    <h2>Dude You’re Getting <br /> a Telescope</h2>
-                    <p>There is a moment in the life of any aspiring astronomer that it is time to buy that first</p>
-                    <a class="white_bg_btn" href="#">View More</a>
+                    <h2 style="font-size: 100px;">😋</h2>
+                    <p>Stop hanging out with shitty people.Dummp your toxit friend</p>
                 </div>
             </div>
         </div>
@@ -71,13 +73,13 @@
                             <div class="col-md-3">
                                 <div class="blog_info text-right">
                                     <div class="post_tag">
-                                        <a href="#" style="font-family: Vazir;">@Html.DisplayNameFor(model => model.Category)</a>
+                                        <a  style="font-family: Vazir; cursor: pointer;">@Html.DisplayFor(modelItem => item.Category)</a>
                                     </div>
                                     <ul class="blog_meta list">
-                                        <li><a href="#" style="font-family: Vazir;">@Html.DisplayFor(modelItem => item.WriterName)<i class="lnr lnr-user"></i></a></li>
-                                        <li><a href="#" style="font-family: Vazir;">@Html.DisplayFor(modelItem => item.DatedPost)<i class="lnr lnr-calendar-full"></i></a></li>
-                                        <li><a href="#" style="font-family: Vazir;">1.2M Views<i class="lnr lnr-eye"></i></a></li>
-                                        <li><a href="#" style="font-family: Vazir;"> نظر @Html.DisplayFor(modelItem => item.commentsNumber)<i class="lnr lnr-bubble" style="direction: ltr;"></i></a></li>
+                                        <li><a  style="font-family: Vazir;cursor: pointer;">@Html.DisplayFor(modelItem => item.WriterName)<i class="lnr lnr-user"></i></a></li>
+                                        <li><a  style="font-family: Vazir;cursor: pointer;">@Html.DisplayFor(modelItem => item.DatedPost)<i class="lnr lnr-calendar-full"></i></a></li>
+                                        <li><a  style="font-family: Vazir;cursor: pointer;">@Html.DisplayFor(modelItem => item.Viewed) بازدید<i class="lnr lnr-eye"></i></a></li>
+                                        <li><a  style="font-family: Vazir;cursor: pointer;"> نظر @Html.DisplayFor(modelItem => item.commentsNumber)<i class="lnr lnr-bubble" style="direction: ltr;"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -96,30 +98,15 @@
                     }
                     <nav class="blog-pagination justify-content-center d-flex">
                         <ul class="pagination">
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">
-                                        <span class="lnr lnr-chevron-left"></span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a href="#" class="page-link">01</a></li>
-                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
-                            <li class="page-item"><a href="#" class="page-link">03</a></li>
-                            <li class="page-item"><a href="#" class="page-link">04</a></li>
-                            <li class="page-item"><a href="#" class="page-link">09</a></li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Next">
-                                    <span aria-hidden="true">
-                                        <span class="lnr lnr-chevron-right"></span>
-                                    </span>
-                                </a>
-                            </li>
+                            <div class="pagedList">
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                                    PagedListRenderOptions.PageNumbersOnly)
+                            </div>
                         </ul>
                     </nav>
                 </div>
             </div>
-                @Html.Partial("_LoginPartial")
+                @Html.Action("SideBar")
           
             </div>
         </div>

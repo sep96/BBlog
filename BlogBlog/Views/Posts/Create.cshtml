@@ -4,13 +4,13 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2 style="margin-top:150px;">Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Post</h4>
         <hr />
@@ -50,8 +50,22 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Text, new { style = "width:100%", htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+        <div class="form-group">
+            @Html.LabelFor(model => model.quotes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.quotes, new { style = "width:100%", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.quotes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TextsecondPart, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.TextsecondPart, new { style = "width:100%", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TextsecondPart, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -70,6 +84,12 @@
                 @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
+        <br />
+        <div class="form-group">
+            <input type="file" id="FileUpload1" />
+            <input type="button" onclick="upload()" id="btnUpload" value="Upload Files" />
+            <div id="result"></div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -86,3 +106,43 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    function upload()
+    {
+        // Checking whether FormData is available in browser
+        if (window.FormData !== undefined) {
+
+            var fileUpload = $("#FileUpload1").get(0);
+            var files = fileUpload.files;
+
+            // Create FormData object
+            var fileData = new FormData();
+
+            // Looping over all files and add it to FormData object
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+            // Adding one more key to FormData object
+            fileData.append('username', 'manas');
+
+            $.ajax({
+                url: '/Upload/UploadFiles',
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: fileData,
+                success: function (result) {
+                    toastr.success('با موفقیت اپلود شد.', 'SEPPPPII')
+                    document.getElementById("result").innerHTML = "img src=\"/Upload/"+result+"\">";
+                },
+                error: function (err) {
+                    toastr.error('با موفقیت اپلود نشد.', 'SEPPPPII')
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+    }
+</script>  

@@ -30,7 +30,8 @@ namespace BlogBlog.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<MacAdd> MacAdds { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
     }
 }

@@ -12,15 +12,10 @@ namespace BlogBlog.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class MacAdd
     {
-        public long CommentsId { get; set; }
-        public string WriterName { get; set; }
-        public string Email { get; set; }
-        public string subject { get; set; }
-        public string Message { get; set; }
-        public Nullable<long> PostId { get; set; }
-        public string Date { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public long ClientID { get; set; }
+        public string ClinetMacAdd { get; set; }
+        public Nullable<long> postId { get; set; }
     }
 }

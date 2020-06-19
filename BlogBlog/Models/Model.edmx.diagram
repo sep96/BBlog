@@ -10,13 +10,13 @@
         <EntityTypeShape EntityType="BlogDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDBModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BlogDBModel.Category" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogDBModel.Comment" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlogDBModel.Post" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="BlogDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="BlogDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="BlogDBModel.FK_Post_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="BlogDBModel.FK_Comments_Post" ManuallyRouted="false" />
         <AssociationConnector Association="BlogDBModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BlogDBModel.Post" Width="1.5" PointX="3" PointY="6.875" />
+        <AssociationConnector Association="BlogDBModel.FK_Post_Category" />
+        <EntityTypeShape EntityType="BlogDBModel.MacAdd" Width="1.5" PointX="8.5" PointY="1.875" />
+        <EntityTypeShape EntityType="BlogDBModel.Comment" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
